@@ -1,0 +1,67 @@
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img 
+      src="{{ section.settings.background_image | img_url: 'master' }}"
+      alt="{{ section.settings.title }}"
+      class="w-full h-full object-cover opacity-20"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-auzrix-black/80 via-auzrix-black to-auzrix-black"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mb-8">
+      <div class="inline-block p-4 bg-auzrix-white/5 rounded-full mb-6">
+        {% render 'icon-sword' %}
+      </div>
+    </div>
+
+    <h1 class="text-6xl md:text-8xl font-cinzel font-bold mb-6">
+      {{ section.settings.title }}
+      <br>
+      <span class="text-stroke-samurai bg-clip-text text-transparent bg-gradient-to-r from-auzrix-white to-auzrix-white/80">
+        {{ section.settings.subtitle }}
+      </span>
+    </h1>
+
+    <p class="text-2xl text-auzrix-gray max-w-3xl mx-auto mb-12">
+      {{ section.settings.description }}
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "More Than a Brand—"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "A Movement"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We're here to transform excuses into action, mediocrity into mastery. Join a brotherhood of warriors dedicated to forging strength through discipline."
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero",
+      "category": "About"
+    }
+  ]
+}
+{% endschema %}

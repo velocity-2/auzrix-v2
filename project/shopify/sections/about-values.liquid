@@ -1,0 +1,122 @@
+{% assign section_padding = section.settings.padding | default: 'py-20' %}
+
+<section class="{{ section_padding }} bg-auzrix-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-cinzel font-bold mb-4">{{ section.settings.title }}</h2>
+      <p class="text-auzrix-gray max-w-2xl mx-auto">{{ section.settings.description }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for block in section.blocks %}
+        {% if block.type == 'value' %}
+          <div class="relative bg-auzrix-black p-8 rounded-lg border border-auzrix-gray/20 hover:border-auzrix-white/40 transform hover:-translate-y-1 transition-all duration-300 group">
+            <div class="bg-auzrix-white/5 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              {% render block.settings.icon %}
+            </div>
+            <h3 class="text-xl font-cinzel font-bold mb-3">{{ block.settings.title }}</h3>
+            <p class="text-auzrix-gray">{{ block.settings.description }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Values Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Core Values"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "These principles guide everything we do and shape who we become."
+    },
+    {
+      "type": "select",
+      "id": "padding",
+      "label": "Section Padding",
+      "options": [
+        {
+          "value": "py-20",
+          "label": "Default"
+        },
+        {
+          "value": "py-12",
+          "label": "Small"
+        },
+        {
+          "value": "py-32",
+          "label": "Large"
+        }
+      ],
+      "default": "py-20"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "icon-shield",
+              "label": "Shield"
+            },
+            {
+              "value": "icon-target",
+              "label": "Target"
+            },
+            {
+              "value": "icon-sword",
+              "label": "Sword"
+            },
+            {
+              "value": "icon-crown",
+              "label": "Crown"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Values Section",
+      "category": "About",
+      "blocks": [
+        {
+          "type": "value"
+        },
+        {
+          "type": "value"
+        },
+        {
+          "type": "value"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

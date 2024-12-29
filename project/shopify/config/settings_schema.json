@@ -1,0 +1,91 @@
+{
+  "current": "1.0.0",
+  "presets": {
+    "Default": {
+      "colors": {
+        "primary": "#000000",
+        "accent": "#FF0000",
+        "background": "#000000",
+        "text": "#FFFFFF",
+        "text_secondary": "#A0A0A0"
+      },
+      "fonts": {
+        "heading": "Cinzel",
+        "body": "Open Sans"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "theme_info",
+      "theme_name": "Auzrix",
+      "theme_version": "1.0.0",
+      "theme_author": "Auzrix",
+      "theme_documentation_url": "",
+      "theme_support_url": ""
+    },
+    {
+      "name": "Colors",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color_primary",
+          "label": "Primary Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "color_accent",
+          "label": "Accent Color",
+          "default": "#FF0000"
+        },
+        {
+          "type": "color",
+          "id": "color_background",
+          "label": "Background Color",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "name": "Typography",
+      "settings": [
+        {
+          "type": "font_picker",
+          "id": "font_heading",
+          "label": "Heading Font",
+          "default": "Cinzel_n4"
+        },
+        {
+          "type": "font_picker",
+          "id": "font_body",
+          "label": "Body Font",
+          "default": "Open Sans_n4"
+        }
+      ]
+    },
+    {
+      "name": "About Page",
+      "settings": [
+        {
+          "type": "text",
+          "id": "about_title",
+          "label": "About Page Title",
+          "default": "More Than a Brand—"
+        },
+        {
+          "type": "text",
+          "id": "about_subtitle",
+          "label": "About Page Subtitle",
+          "default": "A Movement"
+        },
+        {
+          "type": "textarea",
+          "id": "about_description",
+          "label": "About Page Description",
+          "default": "We're here to transform excuses into action, mediocrity into mastery."
+        }
+      ]
+    }
+  ]
+}

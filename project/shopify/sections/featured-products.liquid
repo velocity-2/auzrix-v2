@@ -1,0 +1,148 @@
+<section class="py-20 bg-gradient-to-b from-auzrix-black to-auzrix-black/95 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-radial from-auzrix-white/5 via-transparent to-transparent opacity-20"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-cinzel font-bold text-auzrix-white mb-4">
+        {{ section.settings.title }}
+      </h2>
+      <p class="text-auzrix-gray max-w-2xl mx-auto">
+        {{ section.settings.description }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {% for block in section.blocks %}
+        {% if block.type == 'product' %}
+          <div class="group relative bg-auzrix-black rounded-lg overflow-hidden border border-auzrix-gray/20 hover:border-auzrix-white/40 transition-all duration-300">
+            <div class="aspect-w-1 aspect-h-1">
+              <img
+                src="{{ block.settings.image | img_url: 'master' }}"
+                alt="{{ block.settings.title }}"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                {% if block.settings.badge != blank %}
+                  <div class="absolute top-4 left-4">
+                    <span class="px-3 py-1 bg-auzrix-white/10 text-sm rounded-full">
+                      {{ block.settings.badge }}
+                    </span>
+                  </div>
+                {% endif %}
+                
+                <div class="absolute bottom-4 left-4 right-4">
+                  <a href="{{ block.settings.product_link }}" class="w-full bg-auzrix-white text-auzrix-black py-3 rounded-md flex items-center justify-center space-x-2 hover:bg-auzrix-white/90 transition-colors">
+                    {% render 'icon-shopping-cart' %}
+                    <span>Add to Cart</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-cinzel font-bold mb-2">{{ block.settings.title }}</h3>
+              <p class="text-auzrix-gray">{{ block.settings.price }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_view_all %}
+      <div class="text-center mt-12">
+        <a href="{{ section.settings.view_all_link }}" class="btn-auzrix btn-glow">
+          <span class="btn-content">
+            {{ section.settings.view_all_text }}
+            {% render 'icon-arrow-right' %}
+          </span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover our most popular items, crafted for warriors like you."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "View All Products"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Product Price"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

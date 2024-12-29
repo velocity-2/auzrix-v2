@@ -1,0 +1,36 @@
+@layer utilities {
+  .animate-glow {
+    @apply relative;
+  }
+
+  .animate-glow::after {
+    @apply content-[''] absolute inset-0 bg-gradient-radial from-auzrix-white/20 via-transparent to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .animate-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: .8;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-fade-in {
+    @apply opacity-0 translate-y-4 transition-all duration-700;
+  }
+
+  .animate-fade-in.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+}

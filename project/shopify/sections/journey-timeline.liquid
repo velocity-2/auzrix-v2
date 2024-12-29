@@ -1,0 +1,135 @@
+<section class="py-20 bg-auzrix-black/50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-cinzel font-bold mb-4">{{ section.settings.title }}</h2>
+      <p class="text-auzrix-gray max-w-2xl mx-auto">{{ section.settings.description }}</p>
+    </div>
+
+    <div class="relative">
+      <div class="absolute top-12 left-0 right-0 h-1 bg-auzrix-gray/20">
+        <div class="h-full bg-gradient-to-r from-auzrix-white/40 to-transparent timeline-progress"></div>
+      </div>
+
+      <div class="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+        {% for block in section.blocks %}
+          <div class="relative pt-8">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <div class="w-12 h-12 bg-gradient-radial {{ block.settings.color }} to-transparent rounded-full p-1">
+                <div class="w-full h-full bg-auzrix-black rounded-full border-2 border-auzrix-white flex items-center justify-center">
+                  {% render block.settings.icon %}
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-auzrix-black p-6 rounded-lg border border-auzrix-gray/20 hover:border-auzrix-white/40 transition-all duration-300 h-full">
+              <span class="text-auzrix-red font-cinzel text-lg block mb-2">{{ block.settings.year }}</span>
+              <h3 class="text-xl font-cinzel font-bold mb-3">{{ block.settings.title }}</h3>
+              <p class="text-auzrix-gray mb-4">{{ block.settings.description }}</p>
+              <p class="text-sm text-auzrix-gray/60">{{ block.settings.detail }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Journey Timeline",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Journey"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "From humble beginnings to a global movement, every step shaped our legacy."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "detail",
+          "label": "Detail"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "icon-sword",
+              "label": "Sword"
+            },
+            {
+              "value": "icon-shield",
+              "label": "Shield"
+            },
+            {
+              "value": "icon-target",
+              "label": "Target"
+            },
+            {
+              "value": "icon-crown",
+              "label": "Crown"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Color",
+          "options": [
+            {
+              "value": "from-red-500/20",
+              "label": "Red"
+            },
+            {
+              "value": "from-blue-500/20",
+              "label": "Blue"
+            },
+            {
+              "value": "from-yellow-500/20",
+              "label": "Yellow"
+            },
+            {
+              "value": "from-purple-500/20",
+              "label": "Purple"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Journey Timeline",
+      "category": "About"
+    }
+  ]
+}
+{% endschema %}

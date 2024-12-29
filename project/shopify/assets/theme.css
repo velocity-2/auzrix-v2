@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: {{ settings.color_primary }};
+    --color-accent: {{ settings.color_accent }};
+    --color-text: {{ settings.color_text }};
+    --color-gray: {{ settings.color_gray }};
+  }
+
+  body {
+    @apply bg-auzrix-black text-auzrix-white font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-cinzel;
+  }
+}
+
+@layer components {
+  .btn-auzrix {
+    @apply relative overflow-hidden font-cinzel px-8 py-4 rounded-md 
+           text-auzrix-white bg-auzrix-black
+           border border-auzrix-gray/20 hover:border-auzrix-white
+           transition-all duration-500 transform hover:-translate-y-0.5;
+  }
+
+  .btn-glow::before {
+    @apply content-[''] absolute -inset-0.5 bg-gradient-to-r from-auzrix-white/0 via-auzrix-white/30 to-auzrix-white/0
+           rounded-lg blur opacity-0 transition-all duration-500 scale-95;
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-100 scale-100;
+  }
+
+  .nav-link {
+    @apply font-cinzel uppercase tracking-wide text-auzrix-gray hover:text-auzrix-white transition-colors
+           relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5
+           after:bg-auzrix-white hover:after:w-full after:transition-all after:duration-300;
+  }
+}

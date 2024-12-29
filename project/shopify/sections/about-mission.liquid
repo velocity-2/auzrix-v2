@@ -1,0 +1,137 @@
+{% assign section_padding = section.settings.padding | default: 'py-20' %}
+
+<section class="{{ section_padding }} bg-auzrix-black/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-auzrix-white/20"></div>
+        <h2 class="text-4xl font-cinzel font-bold mb-8">{{ section.settings.title }}</h2>
+        <p class="text-auzrix-gray mb-8 text-lg">{{ section.settings.description }}</p>
+        
+        <div class="space-y-6">
+          {% for block in section.blocks %}
+            {% if block.type == 'principle' %}
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-auzrix-white/5 rounded-lg">
+                  {% render block.settings.icon %}
+                </div>
+                <div>
+                  <h3 class="font-cinzel font-bold mb-1">{{ block.settings.title }}</h3>
+                  <p class="text-auzrix-gray">{{ block.settings.description }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="relative aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+        <img 
+          src="{{ section.settings.image | img_url: 'master' }}"
+          alt="{{ section.settings.title }}"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-auzrix-black via-transparent to-transparent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mission Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We exist to help individuals break through their limitations and achieve greatness through disciplined action and unwavering focus."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "padding",
+      "label": "Section Padding",
+      "options": [
+        {
+          "value": "py-20",
+          "label": "Default"
+        },
+        {
+          "value": "py-12",
+          "label": "Small"
+        },
+        {
+          "value": "py-32",
+          "label": "Large"
+        }
+      ],
+      "default": "py-20"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "principle",
+      "name": "Principle",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "icon-shield",
+              "label": "Shield"
+            },
+            {
+              "value": "icon-target",
+              "label": "Target"
+            },
+            {
+              "value": "icon-sword",
+              "label": "Sword"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mission Section",
+      "category": "About",
+      "blocks": [
+        {
+          "type": "principle"
+        },
+        {
+          "type": "principle"
+        },
+        {
+          "type": "principle"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

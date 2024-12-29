@@ -1,0 +1,45 @@
+<div class="bg-auzrix-black border-b border-auzrix-gray/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <div class="flex items-center">
+        <a href="/" class="text-auzrix-white text-2xl font-cinzel font-black tracking-[0.3em]">
+          {{ shop.name }}
+        </a>
+      </div>
+      
+      <nav class="hidden md:flex items-center space-x-8">
+        {% for link in linklists.main-menu.links %}
+          <a href="{{ link.url }}" class="nav-link font-cinzel text-auzrix-gray hover:text-auzrix-white transition-colors">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
+
+      <div class="flex items-center space-x-6">
+        <a href="/cart" class="text-auzrix-gray hover:text-auzrix-white transition-colors">
+          {% render 'icon-cart' %}
+          <span class="sr-only">Cart</span>
+        </a>
+        <a href="/collections/all" class="btn-auzrix btn-glow">
+          <span class="btn-content">
+            SHOP NOW
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

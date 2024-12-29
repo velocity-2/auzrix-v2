@@ -1,0 +1,97 @@
+<section class="py-20 bg-auzrix-black border-t border-auzrix-gray/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-4xl font-cinzel font-bold text-auzrix-white mb-4">{{ section.settings.title }}</h2>
+      <p class="text-auzrix-gray mb-8 font-secondary">{{ section.settings.description }}</p>
+      
+      <form action="{{ section.settings.form_action }}" method="post" class="flex flex-col sm:flex-row gap-4">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="{{ section.settings.placeholder_text }}"
+          class="flex-1 px-6 py-3 rounded-md bg-auzrix-black text-auzrix-white border border-auzrix-gray/20 focus:border-auzrix-white/40 focus:outline-none transition-colors duration-300 font-secondary"
+        />
+        <button type="submit" class="btn-auzrix btn-glow whitespace-nowrap">
+          <span class="btn-content">
+            {{ section.settings.button_text }}
+            {% render 'icon-arrow-right' %}
+          </span>
+        </button>
+      </form>
+
+      {% if section.settings.show_social %}
+        <div class="mt-12">
+          <p class="text-sm text-auzrix-gray mb-4">{{ section.settings.social_text }}</p>
+          <div class="flex justify-center gap-4">
+            {% if section.settings.instagram_url != blank %}
+              <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener noreferrer" class="text-auzrix-gray hover:text-auzrix-white transition-colors">
+                {% render 'icon-instagram' %}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Stay Strong"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Join our community and receive exclusive insights, offers, and motivation to fuel your journey."
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Input Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "url",
+      "id": "form_action",
+      "label": "Form Action URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Links",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_text",
+      "label": "Social Text",
+      "default": "Follow us on social media"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Forms"
+    }
+  ]
+}
+{% endschema %}

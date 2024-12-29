@@ -1,0 +1,86 @@
+<section class="relative min-h-screen overflow-hidden bg-auzrix-black">
+  <div class="absolute inset-0">
+    <img 
+      src="{{ section.settings.background_image | img_url: 'master' }}"
+      alt="{{ section.settings.title }}"
+      class="w-full h-full object-cover opacity-20"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-auzrix-black/80 via-auzrix-black to-auzrix-black"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+    <div class="text-center max-w-4xl mx-auto px-4 relative z-10">
+      <h2 class="text-xl tracking-[0.5em] text-auzrix-gray uppercase font-cinzel">
+        {{ section.settings.subtitle }}
+      </h2>
+
+      <div class="relative mt-4">
+        <div class="absolute inset-0 bg-gradient-radial from-auzrix-white/20 via-transparent to-transparent blur-2xl transform scale-150"></div>
+        <h1 class="text-7xl md:text-8xl font-black tracking-[0.3em] text-auzrix-white relative font-cinzel">
+          {{ section.settings.title }}
+        </h1>
+      </div>
+
+      <p class="text-xl text-auzrix-white font-cinzel mt-8 mb-12 leading-relaxed tracking-wider max-w-2xl mx-auto">
+        {{ section.settings.description }}
+      </p>
+
+      <div class="flex justify-center space-x-6">
+        <a href="{{ section.settings.button_link }}" class="btn-auzrix btn-glow">
+          <span class="btn-content">
+            {{ section.settings.button_text }}
+            {% render 'icon-arrow-right' %}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Welcome To"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "AUZRIX"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Built with discipline, driven by purpose."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Begin Your Journey"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}
